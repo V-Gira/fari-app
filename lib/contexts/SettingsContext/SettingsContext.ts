@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { IBlock } from "../../domains/character/types";
 import { IDiceCommandSetId, IRollDiceOptions } from "../../domains/dice/Dice";
 import { Id } from "../../domains/Id/Id";
 import { useStorageEntity } from "../../hooks/useStorageEntities/useStorageEntity";
@@ -45,6 +46,17 @@ export function useSettings() {
     key: "fari-dice-command-options",
     localStorage: window.localStorage,
   });
+  const [blocksInClipboard, setBlocksInClipboard] = useStorageEntity<
+    Array<IBlock>
+  >({
+    defaultValue: [],
+    key: "fari-blocks-in-clipboard",
+    localStorage: window.localStorage,
+  });
+
+  useEffect(() => {
+    setBlocksInClipboard([]);
+  }, []);
 
   function toggleThemeMode() {
     setThemeMode(() => {
@@ -54,6 +66,9 @@ export function useSettings() {
 
   const appThemeMode = temporaryThemeMode ?? themeMode;
   return {
+    computed: {
+      hasBlocksInClipboard: blocksInClipboard?.length > 0,
+    },
     state: {
       themeMode: appThemeMode,
       userId,
@@ -61,6 +76,7 @@ export function useSettings() {
       diceCommandIds: diceCommandIds,
       diceOptions,
       gameTemplate,
+      blocksInClipboard,
     },
     actions: {
       setThemeMode,
@@ -70,6 +86,7 @@ export function useSettings() {
       setDiceCommandsIds: setDiceCommandsIds,
       setGameTemplate,
       setDiceOptions,
+      setBlocksInClipboard,
     },
   };
 }

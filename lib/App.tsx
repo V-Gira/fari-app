@@ -14,32 +14,32 @@ import { IManagerViewModel, MyBinder } from "./components/MyBinder/MyBinder";
 import { env } from "./constants/env";
 import {
   CharactersContext,
-  useCharacters,
+  useCharacters
 } from "./contexts/CharactersContext/CharactersContext";
 import { DiceContext, useDice } from "./contexts/DiceContext/DiceContext";
 import {
   IndexCardCollectionsContext,
-  useIndexCardCollections,
+  useIndexCardCollections
 } from "./contexts/IndexCardCollectionsContext/IndexCardCollectionsContext";
 import { InjectionsContext } from "./contexts/InjectionsContext/InjectionsContext";
 import {
   IFolders,
   MyBinderContext,
-  useMyBinder,
+  useMyBinder
 } from "./contexts/MyBinderContext/MyBinderContext";
 import {
   ScenesContext,
-  useScenes,
+  useScenes
 } from "./contexts/SceneContext/ScenesContext";
 import {
   SettingsContext,
-  useSettings,
+  useSettings
 } from "./contexts/SettingsContext/SettingsContext";
 import { CharacterFactory } from "./domains/character/CharacterFactory";
 import { CharacterTemplates } from "./domains/character/CharacterType";
 import {
   IIndexCardCollection,
-  IndexCardCollectionFactory,
+  IndexCardCollectionFactory
 } from "./domains/index-card-collection/IndexCardCollectionFactory";
 import { SceneFactory } from "./domains/scene/SceneFactory";
 import { IScene } from "./hooks/useScene/IScene";
@@ -65,7 +65,10 @@ function AppContexts(props: { children: ReactNode }) {
   const diceManager = useDice({
     defaultCommands: settingsManager.state.diceCommandIds,
     defaultOptions: settingsManager.state.diceOptions,
-    onCommandSetsChange(commandSetOptions) {
+    onOptionsChange: (options) => {
+      settingsManager.actions.setDiceOptions(options);
+    },
+    onCommandSetsChange: (commandSetOptions) => {
       const commandSetIds = commandSetOptions.map((l) => l.id);
       settingsManager.actions.setDiceCommandsIds(commandSetIds);
     },
