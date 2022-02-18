@@ -158,6 +158,7 @@ export type ITranslationKeys =
   | "home-route.cards.wiki.description"
   | "home-route.cards.wiki.title"
   | "home-route.header.cta"
+  | "home-route.header.bjn"
   | "home-route.header.logo-title"
   | "home-route.header.stats"
   | "home-route.header.subtitle"

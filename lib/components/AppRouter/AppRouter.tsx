@@ -29,6 +29,7 @@ const PlayOfflineRoute = React.lazy(
   () => import("../../routes/Play/PlayOfflineRoute")
 );
 const PlayRoute = React.lazy(() => import("../../routes/Play/PlayRoute"));
+const PlayBJNRoute = React.lazy(() => import("../../routes/Play/PlayBJNRoute"));
 const SceneRoute = React.lazy(() => import("../../routes/Scene/SceneRoute"));
 const CardCollection = React.lazy(
   () => import("../../routes/CardCollection/CardCollectionRoute")
@@ -104,6 +105,20 @@ export const AppRouter = () => {
           path={"/play"}
           render={(props) => {
             return <PlayRoute {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path={"/playBJN"}
+          render={(props) => {
+            return <PlayBJNRoute {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path={"/playBJN/:id"}
+          render={(props) => {
+            return <PlayBJNRoute {...props} />;
           }}
         />
         <Route

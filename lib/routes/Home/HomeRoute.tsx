@@ -689,6 +689,25 @@ export const HomeRoute: React.FC<{}> = () => {
             </Grid>
           </Grid>
         </Box>
+        <Box mb="1rem" display="flex">
+          <Grid container>
+            <Grid item lg={6} xs={12}>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                size="large"
+                className={css({ height: "3rem" })}
+                onClick={() => {
+                  history.push("/playBJN");
+                  logger.track("home.start_online_game");
+                }}
+              >
+                {t("home-route.header.bjn")}
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
         <Box
           className={css({
             display: "flex",
